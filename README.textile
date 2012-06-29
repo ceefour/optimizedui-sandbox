@@ -11,7 +11,8 @@ More info about me at http://www.hendyirawan.com/
 h2. Idea
 
 It is a hybrid (server-side + client-side) web framework with "optimized" flow,
-that is partial + deferred asynchronous rendering.
+that is partial + deferred asynchronous rendering, and unified templating for
+both server-side and client-side.
 
 Partial rendering means request rendering is time-limited. 400 ms will be default,
 although the optimum is 250 ms.
@@ -45,14 +46,16 @@ even if just to make sure there will be some form of "prior art". :)
 Features:
 
 1. Optimized for the web use case, partial + deferred asynchronous rendering.
-2. Generates SEO-friendly HTML (all data is in there, not "hidden" inside JavaScript code)
-3. DOM manipulation-friendly using JavaScript, jQuery, and Backbone
-4. Embeds JSON data, so the Backbone is able to "make sense" what data is in the server-generated HTML
-5. Built-in support for common AJAX requests that updates the DOM
-6. Support asynchronous data push from server using Comet/WebSockets/SockJS and/or messaging infrastructure (AMQP, RabbitMQ, Stomp)
-7. Support "simulated" asynchronous data push by using AJAX response as envelope
-8. Supports hash-based (partial) navigation/bookmarkable fragment URIs
-9. Both AJAX request/response and push messages support data payload, UI payload (probably declarative), or code payload
+2. Unified templating: server-side generates HTML, while client-side scripting
+   also generates HTML and manipulates DOM from AJAX operations and push messages
+3. Generates SEO-friendly HTML (all data is in there, not "hidden" inside JavaScript code)
+4. DOM manipulation-friendly using JavaScript, jQuery, and Backbone
+5. Embeds JSON data, so the Backbone is able to "make sense" what data is in the server-generated HTML
+6. Built-in support for common AJAX requests that updates the DOM
+7. Support asynchronous data push from server using Comet/WebSockets/SockJS and/or messaging infrastructure (AMQP, RabbitMQ, Stomp)
+8. Support "simulated" asynchronous data push by using AJAX response as envelope
+9. Supports hash-based (partial) navigation/bookmarkable fragment URIs
+10. Both AJAX request/response and push messages support data payload, UI payload (probably declarative), or code payload
 
 h2. Goals & Requirements
 
