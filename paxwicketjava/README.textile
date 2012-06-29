@@ -1,0 +1,77 @@
+h1. Optimzed UI Sandbox, using Pax Wicket web framework, in Java language
+
+(There should be other web frameworks tested, and also in Scala)
+
+Pax Wicket is first because it natively supports OSGi.
+
+h2. Folder Structure
+
+* core/ (com.hendyirawan.oui.paxwicketjava.core)
+  Core bundle, contains the API and data model
+* karaf/ Karaf 2.2.8 runtime, can be launched from command line, then attached
+  in Eclipse for debugging. can run GoGo commands directly.
+* web/ (com.hendyirawan.oui.paxwicketjava.web)
+  the actual Web UI bundle.
+
+h2. Karaf Crash Course
+
+To view logs, you can tail -F data/log/*.log
+
+To connect via SSH,
+
+bc. ssh karaf@localhost -p8101
+
+with password: karaf
+
+To list features (available or install), use @feature:list@
+
+To install a feature, use @feature:install -v@
+
+h2. Preparing the "App Server"
+
+1. Unpack karaf 2.2.8 to karaf/
+2. Install the web feature:
+
+bc. feature:install -v http
+
+(this will take some time, downloading stuff... and no output at all)
+
+Karaf HTTP/Jetty will be accessible on http://localhost:8181/
+
+3. Install pax-wicket (examples if you need)
+
+bc. features:addurl mvn:org.ops4j.pax.wicket/features/1.0.1/xml/features
+features:addurl mvn:org.ops4j.pax.wicket.samples/features/1.0.1/xml/features
+
+bc. feature:install -v wicket
+
+4. Install some more bunches of common libraries
+
+bc. osgi:install mvn:com.google.guava/guava/12.0
+
+5. Now you have a personalized application server. Better zip the karaf directory
+   and store it somewhere for reuse.
+
+
+h2. Deploying Bundles for Development
+
+Do @mvn install@ for each project.
+
+Then do a symlink:
+
+bc. cd karaf/deploy
+ln -sv ../../shell/target/com.hendyirawan.oui.paxwicketjava.shell-1.0.0-SNAPSHOT.jar
+ln -sv ../../core/target/com.hendyirawan.oui.paxwicketjava.core-1.0.0-SNAPSHOT.jar
+ln -sv ../../web/target/com.hendyirawan.oui.paxwicketjava.web-1.0.0-SNAPSHOT.jar
+
+
+h2. Java vs Scala?
+
+Why Scala? Because Scala has sbt, it can do continuous package
+and Karaf will auto-redeploy.
+
+In Java, we've got four choices:
+1. Use sbt (huh?)
+2. Use gradle (really? it does that?)
+3. Use Eclipse, and some funky symlinks (creating symlinks can be scripted)
+4. Run "mvn package" from Eclipse. Not cool, but "Full Publish" was much worse.
