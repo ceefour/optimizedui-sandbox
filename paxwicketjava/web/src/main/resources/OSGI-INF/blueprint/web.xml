@@ -17,4 +17,18 @@
 <!-- 		</wicket:context-param> -->
 	</wicket:application>
 
+	<!-- Alternative -->
+	<!-- 
+	<service interface="org.apache.wicket.protocol.http.IWebApplicationFactory">
+		<service-properties>
+			<entry key="pax.wicket.applicationname" value="oui" />
+			<entry key="pax.wicket.mountpoint" value="oui" />
+		</service-properties>
+		<bean class="org.ops4j.pax.wicket.util.SimpleWebApplicationFactory">
+			<property name="wicketApplication"
+				value="com.hendyirawan.oui.paxwicketjava.web.OuiApplication" />
+		</bean>
+	</service>
+	-->
+  
 </blueprint>
