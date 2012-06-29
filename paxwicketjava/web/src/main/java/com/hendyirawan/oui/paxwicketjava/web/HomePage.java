@@ -11,7 +11,9 @@ import org.apache.wicket.markup.html.basic.Label;
 public class HomePage extends WebPage {
 
 	public HomePage() {
+		add(new Header());
 		add(new Label("message", "Hello world!"));
+		add(new Footer());
 	}
 
 }
