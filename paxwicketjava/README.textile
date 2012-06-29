@@ -76,6 +76,8 @@ ln -sv ../../shell/target/com.hendyirawan.oui.paxwicketjava.shell-1.0.0-SNAPSHOT
 ln -sv ../../core/target/com.hendyirawan.oui.paxwicketjava.core-1.0.0-SNAPSHOT.jar
 ln -sv ../../web/target/com.hendyirawan.oui.paxwicketjava.web-1.0.0-SNAPSHOT.jar
 
+Now access it from http://localhost:8181/oui/
+
 
 h2. Java vs Scala?
 
