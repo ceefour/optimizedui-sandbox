@@ -16,6 +16,8 @@
 <!--     		<wicket:param-value>deployment</wicket:param-value> -->
 <!-- 		</wicket:context-param> -->
 	</wicket:application>
+	
+	<bean id="navigation" class="com.hendyirawan.oui.paxwicketjava.web.Navigation"/>
 
 	<!-- Alternative -->
 	<!-- 
