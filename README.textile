@@ -1,0 +1,133 @@
+h1. Adaptive UI Sandbox
+
+Optimized Web User Interface (UI) experiments.
+
+Designed for HTML5 adaptive & responsive UI, asynchronous I/O and data models/backends, and potentially multiple clients (browser, REST, desktop app, mobile app, smart TV).
+
+(C) 2012 Hendy Irawan. All rights reserved.
+
+More info about me at http://www.hendyirawan.com/
+
+h2. Idea
+
+It is a hybrid (server-side + client-side) web framework with "optimized" flow,
+that is partial + deferred asynchronous rendering.
+
+Partial rendering means request rendering is time-limited. 400 ms will be default,
+although the optimum is 250 ms.
+
+During a request, multiple jobs will be executed to get the data for the page.
+If all of the jobs finish within the 400 ms time limit, the page is rendered
+immediately and response is sent to browser.
+
+If some or none of the jobs finish within the 400 ms time limit, the page is
+partially rendered (with some elements missing) and response is sent immediately
+to the browser. Whenever a job finishes processing, its result is sent to the
+browser via a push mechanism (Comet/Atmosphere or messaging) and the client
+JavaScript code updates the UI to reflect the change. I call this deferred
+asynchronous rendering.
+
+It's also possible to explicitly mark a job as deferred, so the request handler
+never waits for it. If all other jobs already finished, the explicitly-deferred jobs
+(if not finish yet) will not delay response handling.
+
+Jobs themselves can have a time limit, say 30 seconds. If it doesn't finish within
+that timeframe it will be terminated and never sent to the browser.
+
+Time limit is of course customizable. Maybe for search engines it can wait longer
+to get as much content indexed, but for browsers the priority is to get the page sent
+as soon as possible, the rest can follow later.
+
+I have feeling that this mechanism is patentable in the U.S. I'm not sure but
+given how absurd some of the patents granted are, I put this work in public
+even if just to make sure there will be some form of "prior art". :)
+
+Features:
+
+1. Optimized for the web use case, partial + deferred asynchronous rendering.
+2. Generates SEO-friendly HTML (all data is in there, not "hidden" inside JavaScript code)
+3. DOM manipulation-friendly using JavaScript, jQuery, and Backbone
+4. Embeds JSON data, so the Backbone is able to "make sense" what data is in the server-generated HTML
+5. Built-in support for common AJAX requests that updates the DOM
+6. Support asynchronous data push from server using Comet/WebSockets/SockJS and/or messaging infrastructure (AMQP, RabbitMQ, Stomp)
+7. Support "simulated" asynchronous data push by using AJAX response as envelope
+8. Supports hash-based (partial) navigation/bookmarkable fragment URIs
+9. Both AJAX request/response and push messages support data payload, UI payload (probably declarative), or code payload
+
+h2. Goals & Requirements
+
+21 requirements
+
+All of them are requirements for Bippo Commerce 6, a select few will be implemented for Bippo Commerce 5.
+
+1. MVC / UI framework
+2. Modularity (see #3)
+3. Redeploy problem
+4. Dependency Injection
+5. Internationalization
+6. Caching, both UI and data
+7. Native web integration (Chrome notifications)
+8. Mobile app integration (notification etc.)
+9. Desktop app integration (systray etc.)
+10. Unit testing with whole shebang
+11. Runtime server
+12. Data visualization+animation (on the client too)
+13. Declarative Animated transitions (i.e. Filters in category page)
+14. Data pushes
+15. UI pushes ie. jQuery(...).html(...)
+16. DataModel/Repository API integration
+17. Debuggable
+18. Sources available for easy javadoc & tracing
+19. Hash navigation (for mobile/tablet)
+20. Audit support (can be disabled, or external, ie. Doesnt have to be versionable)
+21. CDN, pseudoCDN, and noCDN support
+
+h2. Why "Optimized UI?
+
+I can't come up with a better name. Adaptive UI, Responsive UI, Natural UI, or Smart UI are already taken.
+"Optimized" is generic enough and doesn't refer to anything specific.
+
+h2. Potential Web Frameworks for foundation
+
+1. Play on Scala
+2. Play on Java
+3. JSF
+4. Wicket
+5. Pax Wicket
+6. Tapestry
+7. Spring MVC
+8. Sling
+9. Vaadin (OSGi support)
+10. Oobium
+11. OpenXava
+12. ZK
+13. Scout
+14. RAP?
+15. Custom framework on top of e4
+16. Grails - most likely out
+
+Out: Struts 2, GWT (nondynamic)
+
+h2. Potential Dependency Injection
+
+1. CDI - most likely out. Delete beans.xml?
+2. Blueprint - OSGi, but compatible with Spring, guice, junit
+3. Guice
+4. E4 stuff
+5. Spring???
+
+h2. Server
+
+1. JBoss (OSGi support seems not yet mature at least for 7.1.x...)
+2. GlassFish
+3. Karaf (best OSGi!)
+4. ServiceMix (most not needed)
+5. Geronimo (mature next year!)
+6. Virgo
+7. SwitchYard
+
+Note: you can split in two parts, ie geronimo for the web bundles, karaf/switchyard for the logic bundles
+
+h2. Honorable
+
+1. Sapphire
