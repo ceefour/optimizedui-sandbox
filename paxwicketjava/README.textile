@@ -45,6 +45,18 @@ features:addurl mvn:org.ops4j.pax.wicket.samples/features/1.0.1/xml/features
 
 bc. feature:install -v wicket
 
+You need cglib, the samples will install it but wicket feature doesn't:
+
+osgi:install mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/2.2.2_1
+
+If you want samples too:
+
+feature:install -v wicket-samples-blueprint-simple
+feature:install -v wicket-samples-blueprint-wicketproperties
+feature:install -v wicket-samples-blueprint-mount
+feature:install -v wicket-samples-blueprint-filter
+feature:install -v wicket-samples-blueprint-injection-simple
+
 4. Install some more bunches of common libraries
 
 bc. osgi:install mvn:com.google.guava/guava/12.0

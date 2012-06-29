@@ -170,10 +170,21 @@
 				<configuration>
 				<instructions>
 					<!-- Required imports of Pax Wicket, see http://team.ops4j.org/wiki/display/paxwicket/Wicket+Applications+(Quick) -->
-					<Import-Package>org.ops4j.pax.wicket.util.proxy,
+<!-- 					<Import-Package>javax.servlet,javax.servlet.http, -->
+<!-- 						org.apache.wicket.event,org.apache.wicket.settings, -->
+<!-- 						org.apache.wicket.request,org.apache.wicket.request.http,org.apache.wicket.request.cycle, -->
+<!-- 						org.apache.wicket.util,org.apache.wicket.util.file, -->
+<!-- 						org.apache.wicket.ajax, -->
+<!-- 						org.ops4j.pax.wicket.util.proxy, -->
+<!-- 						net.sf.cglib.proxy;version="[2,3)", -->
+<!-- 						net.sf.cglib.core;version="[2,3)", -->
+<!-- 						net.sf.cglib.reflect;version="[2,3)",*</Import-Package> -->
+					<Import-Package>javax.servlet,javax.servlet.http,
+						org.ops4j.pax.wicket.util.proxy,
 						net.sf.cglib.proxy;version="[2,3)",
 						net.sf.cglib.core;version="[2,3)",
 						net.sf.cglib.reflect;version="[2,3)",*</Import-Package>
+					<Require-Bundle>org.ops4j.pax.wicket.service</Require-Bundle>
 					<!--<Export-Package>org.foo.myproject.*</Export-Package>-->
 					<!--<Private-Package>org.foo.myproject.*</Private-Package>-->
 					<!--<Bundle-Activator>org.foo.myproject.impl1.Activator</Bundle-Activator>-->
