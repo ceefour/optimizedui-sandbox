@@ -1,4 +1,5 @@
 /*
+== Setup
 Requires nginx.
 
 Create a block in nginx main server (/etc/nginx/sites-available/default) like below:
@@ -16,6 +17,16 @@ server {
 	}
 
 }
+
+== Late Push
+
+To do the push yourself:
+
+$ amqp-publish -e amq.topic -r oui.late -b '{"sidebarHtml": "Hello World"}'
+
+Requires: sudo aptitude install -y amqp-tools
+
+== Performance
 
 With concurrency 128 and categories is delayed 1000ms:
 
@@ -87,7 +98,7 @@ function flushHomePage(homePage) {
 function renderHomePage(homePage) {
 	clearTimeout(homePage.flusher);
 	homePage.flushed = true;
-	fs.readFile('templates/layout8.html.tpl', 'UTF-8', function(err, data) {
+	fs.readFile('templates/layout9.html.tpl', 'UTF-8', function(err, data) {
 		if (err) throw err;
 		var output = _.template(data, {
 			baseUri: '/ouinode/',
