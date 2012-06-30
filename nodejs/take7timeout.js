@@ -17,23 +17,33 @@ server {
 
 }
 
-Performance
-- template is loaded on-demand: 647.93 r/s
-- template preloaded: 714.03 r/s
-Seems like Linux filesystem cache/buffer is working well. :)
+With concurrency 128 and categories is delayed 1000ms:
+
+Requests per second:    117.65 [#/sec] (mean)
+Time per request:       1088.014 [ms] (mean)
+Time per request:       8.500 [ms] (mean, across all concurrent requests)
+
+With concurrency 256 and categories is delayed 1000ms:
+
+Requests per second:    212.57 [#/sec] (mean)
+Time per request:       1204.327 [ms] (mean)
+Time per request:       4.704 [ms] (mean, across all concurrent requests)
+
+So even under many concurrent load, RPS is good.
+Problemm is, time per request is bad.
 
 */
 
 var _ = require('./lib/underscore.js');
 var http = require('http');
 var fs = require('fs');
+var categoryRepo = require('./category.js');
 
 function fetchCategories(success) {
-	console.log('Fetching categories...');
-	process.nextTick(function() {
-		var categoryRepo = require('./category.js');
+	console.log('Fetching categories, simulating load by waiting 1000ms...');
+	setTimeout(function() {
 		success(categoryRepo.categories);
-	});
+	}, 1000);
 }
 
 function fetchContent(success) {
