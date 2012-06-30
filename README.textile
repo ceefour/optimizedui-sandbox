@@ -109,20 +109,22 @@ h2. Potential Web Frameworks for foundation
 
 1. Play on Scala
 2. Play on Java
-3. JSF
-4. Wicket
-5. Pax Wicket
-6. Tapestry
-7. Spring MVC
-8. Sling
-9. Vaadin (OSGi support)
-10. Oobium
-11. OpenXava
-12. ZK
-13. Scout
-14. RAP?
-15. Custom framework on top of e4
-16. Grails - most likely out
+3. Vert.x (plain)
+4. Vert.x OSGi
+5. JSF
+6. Wicket
+7. Pax Wicket
+8. Tapestry
+9. Spring MVC
+10. Sling
+11. Vaadin (OSGi support)
+12. Oobium
+13. OpenXava
+14. ZK
+15. Scout
+16. RAP?
+17. Custom framework on top of e4
+18. Grails - most likely out
 
 Out: Struts 2, GWT (nondynamic)
 
