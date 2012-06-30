@@ -111,20 +111,21 @@ h2. Potential Web Frameworks for foundation
 2. Play on Java
 3. Vert.x (plain) - requires Java 7
 4. Vert.x OSGi - requires Java 7. See http://www.dzone.com/links/mind_the_gap_osgi_case_study_a_modular_vertx.html
-5. JSF
-6. Wicket
-7. Pax Wicket
-8. Tapestry
-9. Spring MVC
-10. Sling
-11. Vaadin (OSGi support)
-12. Oobium
-13. OpenXava
-14. ZK
-15. Scout
-16. RAP?
-17. Custom framework on top of e4
-18. Grails - most likely out
+5. node.js - just for fun, and imagine how it will work in Vert.x
+6. JSF
+7. Wicket
+8. Pax Wicket
+9. Tapestry
+10. Spring MVC
+11. Sling
+12. Vaadin (OSGi support)
+13. Oobium
+14. OpenXava
+15. ZK
+16. Scout
+17. RAP?
+18. Custom framework on top of e4
+19. Grails - most likely out
 
 Out: Struts 2, GWT (nondynamic)
 
