@@ -58,12 +58,7 @@
 				<!--<a class="brand" href="#">Berbatik</a>-->
 				<div class="nav-collapse">
 
-					<ul class="nav">
-						<li><p class="navbar-text"><span id="notification-count">0</span> &nbsp;</p></li>
-						<li class="active"><h:link outcome="pretty:home" value="Home" /></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
+					<%= headerView %>
 
 					<p class="navbar-text pull-right">
 						<h:link outcome="pretty:login" value="Login" />
@@ -89,9 +84,7 @@
 			<!--/span-->
 
 			<div class="span9">
-				<ui:insert name="contentPrimary">
-				</ui:insert>
-
+				<%= contentView %>
 			</div>
 			<!--/row-->
 		</div>

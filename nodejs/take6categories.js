@@ -60,7 +60,9 @@ function checkHomePage(homePage) {
 				mediaUri: '/ouinode_static/media/',
 				pageTitle: 'Buy best fashion',
 
+				headerView: homePage.headerView,
 				sidebarView: homePage.sidebarView,
+				contentView: homePage.contentView,
 			});
 			homePage.response.end(output);
 		});
@@ -72,6 +74,13 @@ function checkHomePage(homePage) {
 http.createServer(function (req, res) {
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	var homePage = {response: res};
+	homePage.headerView = '					<ul class="nav">\
+						<li><p class="navbar-text"><span id="notification-count">0</span> &nbsp;</p></li>\
+						<li class="active"><h:link outcome="pretty:home" value="Home" /></li>\
+						<li><a href="#about">About</a></li>\
+						<li><a href="#contact">Contact</a></li>\
+					</ul>';
+
 	fetchCategories(function(categories) {
 		console.log('Categories:', categories);
 		output = _.template('<ul> \
@@ -79,7 +88,6 @@ http.createServer(function (req, res) {
 			<li><%- category %></li> \
 		<% }) %> \
 		</ul>', {categories: categories});
-		homePage.headerView = output;
 		homePage.sidebarView = output;
 		checkHomePage(homePage);
 	});
