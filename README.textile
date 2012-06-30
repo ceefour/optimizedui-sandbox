@@ -109,8 +109,8 @@ h2. Potential Web Frameworks for foundation
 
 1. Play on Scala
 2. Play on Java
-3. Vert.x (plain)
-4. Vert.x OSGi
+3. Vert.x (plain) - requires Java 7
+4. Vert.x OSGi - requires Java 7
 5. JSF
 6. Wicket
 7. Pax Wicket
