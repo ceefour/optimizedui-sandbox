@@ -13,6 +13,7 @@
 		applicationName="oui" mountPoint="oui">
 <!-- 		<wicket:context-param> -->
 <!-- 			<wicket:param-name>configuration</wicket:param-name> -->
+<!--     		<wicket:param-value>development</wicket:param-value> -->
 <!--     		<wicket:param-value>deployment</wicket:param-value> -->
 <!-- 		</wicket:context-param> -->
 	</wicket:application>

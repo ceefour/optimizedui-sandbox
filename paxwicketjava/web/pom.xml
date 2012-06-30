@@ -168,8 +168,8 @@
 				<version>2.3.7</version>
 				<extensions>true</extensions>
 				<configuration>
-					<_wab>src/main/webapp</_wab>
 					<instructions>
+						<_wab>src/main/webapp</_wab>
 						<!-- Required imports of Pax Wicket, see http://team.ops4j.org/wiki/display/paxwicket/Wicket+Applications+(Quick) -->
 	<!-- 					<Import-Package>javax.servlet,javax.servlet.http, -->
 	<!-- 						org.apache.wicket.event,org.apache.wicket.settings, -->
@@ -187,7 +187,7 @@
 							net.sf.cglib.reflect;version="[2,3)",*</Import-Package>
 						<Require-Bundle>org.ops4j.pax.wicket.service</Require-Bundle>
 						<Bundle-ClassPath>.,WEB-INF/classes,{maven-dependencies}</Bundle-ClassPath>
-						<Web-ContextPath>/hello</Web-ContextPath>
+						<Web-ContextPath>/static</Web-ContextPath>
 						<!--<Export-Package>org.foo.myproject.*</Export-Package>-->
 						<!--<Private-Package>org.foo.myproject.*</Private-Package>-->
 						<!--<Bundle-Activator>org.foo.myproject.impl1.Activator</Bundle-Activator>-->
@@ -195,6 +195,26 @@
 				</configuration>
 			</plugin>
 
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.codehaus.mojo</groupId> -->
+<!-- 				<artifactId>build-helper-maven-plugin</artifactId> -->
+<!-- 				<version>1.5</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>add-source</id> -->
+<!-- 						<phase>generate-sources</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>add-source</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<sources> -->
+<!-- 								<source>src/main/webapp</source> -->
+<!-- 							</sources> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
+		
 		</plugins>
 	</build>
 
