@@ -18,7 +18,14 @@
 <!-- 		</wicket:context-param> -->
 	</wicket:application>
 	
-	<bean id="navigation" class="com.hendyirawan.oui.paxwicketjava.web.Navigation"/>
+<!-- 	<bean id="executor" class="java.util.concurrent.Executors" factory-method="newCachedThreadPool"/> -->
+<!-- 	<bean id="actorSystem" class="akka.actor.ActorSystem" factory-method="create"> -->
+<!-- 		<argument value="ouipaxwicket"/> -->
+<!-- 	</bean> -->
+	<bean id="navigation" class="com.hendyirawan.oui.paxwicketjava.web.Navigation">
+<!-- 		<argument ref="executor"/> -->
+<!-- 			<argument><null/></argument> -->
+	</bean>
 
 	<!-- Alternative -->
 	<!-- 
