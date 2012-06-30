@@ -110,7 +110,7 @@ h2. Potential Web Frameworks for foundation
 1. Play on Scala
 2. Play on Java
 3. Vert.x (plain) - requires Java 7
-4. Vert.x OSGi - requires Java 7. See http://www.dzone.com/links/mind_the_gap_osgi_case_study_a_modular_vertx.html
+4. Vert.x OSGi - requires Java 7. See http://underlap.blogspot.de/2012/06/osgi-case-study-modular-vertx.html
 5. node.js - just for fun, and imagine how it will work in Vert.x
 6. JSF
 7. Wicket
