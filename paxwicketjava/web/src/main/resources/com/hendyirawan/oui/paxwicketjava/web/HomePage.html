@@ -63,20 +63,7 @@
 				<a class="brand" href="{%- baseUri %}">Fashion Store</a>
 
 				<!--<a class="brand" href="#">Berbatik</a>-->
-				<div class="nav-collapse">
-
-					{% if (headerView) { %}
-						{%= headerView %}
-					{% } else { %}
-						<div>Timed out getting header</div>
-					{% } %}
-
-					<p class="navbar-text pull-right">
-						<h:link outcome="pretty:login" value="Login" />
-					</p>
-
-				</div>
-				<!--/.nav-collapse -->
+				<div wicket:id="header"/>
 
 			</div>
 		</div>
@@ -87,7 +74,12 @@
 			<div class="span3">
 				<div class="well sidebar-nav">
 
-					<span wicket:id="header"/>
+					<ul class="nav nav-list">
+						<li class="nav-header">Categories</li>
+					<div wicket:id="categories">
+						<li><a wicket:id="name"/></li>
+					</div>
+					</ul>
 
 				</div>
 				<!--/.well -->

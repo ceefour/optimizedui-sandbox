@@ -1,10 +1,19 @@
-<wicket:panel xmlns:wicket="urn:wicket"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="urn:wicket http://git-wip-us.apache.org/repos/asf/wicket/repo?p=wicket.git;a=blob_plain;f=wicket-core/src/main/resources/META-INF/wicket-1.5.xsd;hb=master">
-<header style="border: 1px solid gray;">
-	header!
-	<div>
-		<span wicket:id="rv"/>
-	</div>
-</header>
+<html>
+<body>
+<wicket:panel>
+
+<div class="nav-collapse">
+
+	<ul class="nav" wicket:id="navbar">
+		<li><a wicket:id="item"/></li>
+	</ul>
+
+	<p class="navbar-text pull-right">
+		<h:link outcome="pretty:login" value="Login" />
+	</p>
+
+</div><!--/.nav-collapse -->
+
 </wicket:panel>
+</body>
+</html>
