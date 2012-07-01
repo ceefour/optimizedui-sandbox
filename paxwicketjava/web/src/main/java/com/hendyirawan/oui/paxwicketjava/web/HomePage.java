@@ -12,6 +12,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.soluvas.json.JsonUtils;
 
 import com.hendyirawan.oui.paxwicketjava.core.Category;
 
@@ -54,6 +55,12 @@ public class HomePage extends WebPage {
 		});
 		add(new Label("message", "Hello world!"));
 		add(new Footer());
+		
+		// Add the Backbone data
+		add(new Label("categoriesData", "var categoriesData = " + JsonUtils.asJson(categories) + ";")
+			.setEscapeModelStrings(false));
+
+		// Add the Backbone View classes
 	}
 
 }

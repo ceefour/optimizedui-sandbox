@@ -141,11 +141,8 @@
 	<script type="text/javascript" src="/static/js/growl.js"></script>
 	<script type="text/javascript" src="/static/js/sidebar.js"></script>
 
+<script type="text/javascript" wicket:id="categoriesData"></script>
 <script type="text/javascript">
-// TODO: Sync this
-var categoriesData = [{id: 'bags', name: 'Bags'}, {id: 'shawl', name: 'Shawl'}, {id: 'obi', name: 'Obi'},
-                      {id: 'apparel', name: 'Apparel'}, {id: 'accessories', name: 'Accessories'}];
-
 var ProductCategory = Backbone.Model.extend({});
 var ProductCategoryList = Backbone.Collection.extend({
 	model: ProductCategory});
