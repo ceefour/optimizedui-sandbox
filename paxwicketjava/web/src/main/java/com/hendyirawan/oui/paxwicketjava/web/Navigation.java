@@ -4,15 +4,16 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.soluvas.push.data.SyncRepository;
 
 import akka.actor.ActorSystem;
 
-import com.google.common.collect.ImmutableList;
+import com.hendyirawan.oui.paxwicketjava.core.Category;
+import com.hendyirawan.oui.paxwicketjava.core.CategoryRepository;
 
 /**
  * @author ceefour
@@ -25,19 +26,19 @@ public class Navigation implements Serializable {
 	private List<Category> categories;
 	private ActorSystem actorSystem;
 	private ExecutorService executor;
-	private InMemoryProductCategoryRepository categoryRepo;
+	private CategoryRepository categoryRepository;
 	
 //	public Navigation(ActorSystem actorSystem) {
 //		super();
 //		this.actorSystem = actorSystem;
 	public Navigation() {
-		categoryRepo = new InMemoryProductCategoryRepository();
+//		categoryRepo = new InMemoryProductCategoryRepository();
 //		this.executor = executor;
 //		this.executor = Executors.newCachedThreadPool();
 	}
 	
 	public void init() {
-		categories = categoryRepo.findAll();
+		categories = categoryRepository.findAll();
 	}
 
 	public List<Category> getCategories() {
@@ -78,5 +79,13 @@ public class Navigation implements Serializable {
 
 	public void setExecutor(ExecutorService executor) {
 		this.executor = executor;
+	}
+
+	public CategoryRepository getCategoryRepository() {
+		return categoryRepository;
+	}
+
+	public void setCategoryRepository(CategoryRepository categoryRepository) {
+		this.categoryRepository = categoryRepository;
 	}
 }

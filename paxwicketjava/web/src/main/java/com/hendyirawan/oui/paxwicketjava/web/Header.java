@@ -7,6 +7,8 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.hendyirawan.oui.paxwicketjava.core.Category;
+
 /**
  * @author ceefour
  *

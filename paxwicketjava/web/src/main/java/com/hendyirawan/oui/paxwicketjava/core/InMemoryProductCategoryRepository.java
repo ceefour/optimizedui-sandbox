@@ -1,4 +1,4 @@
-package com.hendyirawan.oui.paxwicketjava.web;
+package com.hendyirawan.oui.paxwicketjava.core;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +12,7 @@ import com.google.common.collect.ImmutableList;
  * @author ceefour
  *
  */
-public class InMemoryProductCategoryRepository implements SyncRepository<String, Category> {
+public class InMemoryProductCategoryRepository implements CategoryRepository {
 
 	private Map<String, Category> categories = new ConcurrentHashMap<String, Category>();
 	

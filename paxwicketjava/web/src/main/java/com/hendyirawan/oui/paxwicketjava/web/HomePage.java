@@ -13,6 +13,8 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hendyirawan.oui.paxwicketjava.core.Category;
+
 /**
  * @author ceefour
  *

@@ -1,4 +1,4 @@
-package com.hendyirawan.oui.paxwicketjava.web;
+package com.hendyirawan.oui.paxwicketjava.core;
 
 import java.io.Serializable;
 
