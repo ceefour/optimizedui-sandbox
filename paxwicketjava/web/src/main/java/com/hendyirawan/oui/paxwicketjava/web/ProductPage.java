@@ -1,24 +1,20 @@
 package com.hendyirawan.oui.paxwicketjava.web;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soluvas.json.JsonUtils;
 
-import com.google.common.collect.ImmutableList;
 import com.hendyirawan.oui.paxwicketjava.core.Category;
 import com.hendyirawan.oui.paxwicketjava.core2.Product;
 
@@ -27,13 +23,14 @@ import com.hendyirawan.oui.paxwicketjava.core2.Product;
  *
  */
 @SuppressWarnings("serial")
-public class HomePage extends WebPage {
+public class ProductPage extends WebPage {
 
-	private transient Logger log = LoggerFactory.getLogger(HomePage.class);
+	private transient Logger log = LoggerFactory.getLogger(ProductPage.class);
 	@PaxWicketBean(name="navigation")
 	private Navigation navigation;
 	
-	public HomePage() {
+	public ProductPage(PageParameters params) {
+		
 		// Request data
 		log.info("Requesting categories data...");
 		Future<List<Category>> categoriesFuture = navigation.getCategoriesAsync();
@@ -47,6 +44,7 @@ public class HomePage extends WebPage {
 		} catch (Exception e) {
 			log.error("Cannot get categories", e);
 		}
+		Product product = new Product("Tia Bag");
 		
 		// Construct the view
 		add(new Label("pageTitle", "Buy Amazing Fashion").setRenderBodyOnly(true));
@@ -60,18 +58,9 @@ public class HomePage extends WebPage {
 			}
 		});
 		add(new Footer());
-		add(new ListView<Product>("featuredProducts", ImmutableList.of(new Product("Zevalova Bag"))) {
-
-			@Override
-			protected void populateItem(ListItem<Product> item) {
-				item.setRenderBodyOnly(true);
-				Product product = item.getModelObject();
-				PageParameters pars = new PageParameters();
-				pars.add("slug", product.getSlug());
-				item.add(new BookmarkablePageLink<ProductPage>("link", ProductPage.class, pars).setBody(new Model<Serializable>(product.getName())));
-			}
-			
-		});
+		
+		add(new Label("productName", product.getName()));
+		add(new Label("productDescription", "Sangat bagus dan menarik"));
 		
 		// Add the Backbone data
 		add(new Label("categoriesData", "var categoriesData = " + JsonUtils.asJson(categories) + ";")

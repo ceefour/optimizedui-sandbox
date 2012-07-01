@@ -10,6 +10,7 @@ import org.soluvas.push.data.SyncRepository;
  * @author ceefour
  *
  */
+@Deprecated
 public interface CategoryRepository extends SyncRepository<String, Category> {
 
 }
