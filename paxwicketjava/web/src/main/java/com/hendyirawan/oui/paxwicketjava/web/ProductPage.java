@@ -63,10 +63,13 @@ public class ProductPage extends WebPage {
 		add(new Footer());
 		
 		add(new Label("productName", product.getName()));
-		add(new Label("productDescription", "Sangat bagus dan menarik"));
+		add(new Label("productPrice", "IDR " + product.getPrice().toString()));
+		add(new Label("productDescription", product.getDescription()));
 		
 		// Add the Backbone data
 		add(new Label("categoriesData", "var categoriesData = " + JsonUtils.asJson(categories) + ";")
+			.setEscapeModelStrings(false));
+		add(new Label("productData", "var productData = " + JsonUtils.asJson(product) + ";")
 			.setEscapeModelStrings(false));
 
 		// Add the Backbone View classes

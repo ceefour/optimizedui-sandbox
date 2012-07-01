@@ -85,8 +85,11 @@
 			<!--/span-->
 
 			<div class="span9">
-				<h1 wicket:id="productName">Product Name</h1>
-				<p wicket:id="productDescription">Bla bla bla</p>
+				<div class="product-view">
+					<h1 wicket:id="productName">Product Name</h1>
+					<p wicket:id="productPrice">IDR 99.500</p>
+					<p wicket:id="productDescription">Bla bla bla</p>
+				</div>
 			</div>
 			<!--/row-->
 		</div>
@@ -140,14 +143,16 @@
 	<script type="text/javascript" src="/static/bootstrap/js/bootstrap-typeahead.js"></script>
 
 	<script type="text/javascript" src="/static/js/growl.js"></script>
-	<script type="text/javascript" src="/static/js/sidebar.js"></script>
+	<script type="text/javascript" src="/static/js/productshow.js"></script>
 
 <script type="text/javascript" wicket:id="categoriesData"></script>
+<script type="text/javascript" wicket:id="productData"></script>
 <script type="text/javascript">
 // Define Model classes
 var ProductCategory = Backbone.Model.extend({});
 var ProductCategoryList = Backbone.Collection.extend({
 	model: ProductCategory});
+var Product = Backbone.Model.extend();
 
 // TODO: should be convertable directly from Wicket Markup, or defined manually
 // per component
@@ -189,14 +194,32 @@ var CategoriesNavbarView = Backbone.View.extend({
 	}
 });
 
+var productTemplate = '<h1><%- product.get("name") %></h1> \
+	<p>IDR <%- product.get("price") %></p> \
+	<p><%- product.get("description") %></p>';
+var ProductView = Backbone.View.extend({
+	initialize: function() {
+		_.bindAll(this, 'render');
+		this.model.on('change', this.render);
+	},
+	render: function() {
+		var html = _.template(productTemplate, {product: this.model});
+		this.$el.html(html);
+		return this;
+	}
+});
+
 // create Model instances and reset before view is attached
 var productCategories = new ProductCategoryList(categoriesData);
+var product = new Product(productData);
 
 // create View instances
 var categoriesSidebarView = new CategoriesSidebarView({el: jQuery('.sidebar-nav ul.nav'),
 	model: productCategories});
 var categoriesNavbarView = new CategoriesNavbarView({el: jQuery('.navbar ul.nav'),
-	model: productCategories})
+	model: productCategories});
+var productView = new ProductView({el: jQuery('.product-view'),
+	model: product});
 
 </script>
 
