@@ -55,7 +55,6 @@ osgi:install -s webbundle:http://tomcat.apache.org/tomcat-5.5-doc/appdev/sample/
 Open via browser: 
 http://localhost:8181/sample/index.html
 
-
 4. Install pax-wicket (examples if you need)
 
 bc. features:addurl mvn:org.ops4j.pax.wicket/features/1.0.1/xml/features
@@ -78,14 +77,30 @@ feature:install -v wicket-samples-blueprint-injection-simple
 5. Install some more bunches of common libraries
 
 bc. osgi:install mvn:com.google.guava/guava/12.0
+osgi:install mvn:com.fasterxml.jackson.core/jackson-core/2.0.0
+osgi:install mvn:com.fasterxml.jackson.core/jackson-databind/2.0.0
+osgi:install mvn:com.fasterxml.jackson.core/jackson-annotations/2.0.0
+osgi:install mvn:com.fasterxml.jackson.datatype/jackson-datatype-joda/2.0.0
+osgi:install mvn:com.rabbitmq/amqp-client/2.8.2
+osgi:install mvn:joda-time/joda-time/1.6.2
 
-6. Karaf Web Console is good for administration
+Note: Not needed, but maybe later...
+
+bc. osgi:install mvn:joda-time/joda-time/2.1
+
+6. Install Soluvas Framework libraries
+
+bc. osgi:install mvn:org.soluvas/soluvas-commons/1.0.0-SNAPSHOT@snapshot
+osgi:install mvn:org.soluvas/soluvas-json/1.0.0-SNAPSHOT@snapshot
+osgi:install mvn:org.soluvas/soluvas-push/1.0.0-SNAPSHOT@snapshot
+
+7. Karaf Web Console is good for administration
 
 bc. feature:install -v webconsole
 
 Access from http://localhost:8181/system/console/bundles with user karaf password karaf
 
-7. Now you have a personalized application server. Better zip the karaf directory
+8. Now you have a personalized application server. Better zip the karaf directory
    and store it somewhere for reuse.
 
 

@@ -25,22 +25,19 @@ public class Navigation implements Serializable {
 	private List<Category> categories;
 	private ActorSystem actorSystem;
 	private ExecutorService executor;
+	private ProductCategoryRepository categoryRepo;
 	
 //	public Navigation(ActorSystem actorSystem) {
 //		super();
 //		this.actorSystem = actorSystem;
 	public Navigation() {
+		categoryRepo = new ProductCategoryRepository();
 //		this.executor = executor;
 //		this.executor = Executors.newCachedThreadPool();
 	}
 	
 	public void init() {
-		categories = ImmutableList.of(
-				new Category("Bags"),
-				new Category("Shawl"),
-				new Category("Obi"),
-				new Category("Apparel"),
-				new Category("Accessories") );
+		categories = categoryRepo.findAll();
 	}
 
 	public List<Category> getCategories() {
