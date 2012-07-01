@@ -142,7 +142,9 @@
 	<script type="text/javascript" src="/static/js/sidebar.js"></script>
 
 <script type="text/javascript">
-var categoriesData = [{name: 'Bags'}, {name: 'Shawl'}, {name: 'Obi'}, {name: 'Shoes'}];
+// TODO: Sync this
+var categoriesData = [{id: 'bags', name: 'Bags'}, {id: 'shawl', name: 'Shawl'}, {id: 'obi', name: 'Obi'},
+                      {id: 'apparel', name: 'Apparel'}, {id: 'accessories', name: 'Accessories'}];
 
 var ProductCategory = Backbone.Model.extend({});
 var ProductCategoryList = Backbone.Collection.extend({
@@ -155,7 +157,7 @@ productCategories.reset(categoriesData);
 // per component
 var categoriesSidebarTemplate = '<li class="nav-header">Categories</li> \
 	<% categories.each(function(category) { %> \
-		<li><a href="#<%- category.get("name") %>"><%- category.get("name") %></a></li> \
+		<li><a href="/category/<%- category.id %>"><%- category.get("name") %></a></li> \
 	<% }) %> \
 </div>';
 var CategoriesSidebarView = Backbone.View.extend({

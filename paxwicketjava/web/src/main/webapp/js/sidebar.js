@@ -10,16 +10,17 @@ jQuery(document).ready(function() {
 	//  client.send('/topic/test', {}, data);
 	//});
 	client.connect('guest', 'guest', function(x) {
-		id = client.subscribe("/topic/oui.late", function(d) {
-			var message = d.body;
-			try {
-				var json = JSON.parse(message);
-				console.log('push', json);
-				if (json.sidebarHtml) {
-					jQuery('.sidebar-nav').html(json.sidebarHtml);
-				}
-			} catch (e) {
-				console.error('This doesn\'t look like a valid JSON: ', e, message);
+		id = client.subscribe("/topic/product_category", function(d) {
+			var message = JSON.parse(d.body);
+			console.debug('push', message);
+			if (message['@class'] == 'org.soluvas.push.CollectionAdd') {
+				productCategories.add(message.entry);
+			}
+			if (message['@class'] == 'org.soluvas.push.CollectionUpdate') {
+				productCategories.get(message.entryId).set(message.entry);
+			}
+			if (message['@class'] == 'org.soluvas.push.CollectionDelete') {
+				productCategories.remove(message.entryId);
 			}
 		});
 	});
