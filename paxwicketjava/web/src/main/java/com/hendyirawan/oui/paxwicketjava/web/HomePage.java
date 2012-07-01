@@ -51,6 +51,7 @@ public class HomePage extends WebPage {
 		} catch (Exception e) {
 			log.error("Cannot get categories", e);
 		}
+		List<Product> products = productRepo.findAll();
 		
 		// Construct the view
 		add(new Label("pageTitle", "Buy Amazing Fashion").setRenderBodyOnly(true));
@@ -64,7 +65,7 @@ public class HomePage extends WebPage {
 			}
 		});
 		add(new Footer());
-		add(new ListView<Product>("featuredProducts", productRepo.findAll()) {
+		add(new ListView<Product>("featuredProducts", products) {
 
 			@Override
 			protected void populateItem(ListItem<Product> item) {
@@ -80,6 +81,15 @@ public class HomePage extends WebPage {
 		
 		// Add the Backbone data
 		add(new Label("categoriesData", "var categoriesData = " + JsonUtils.asJson(categories) + ";")
+			.setEscapeModelStrings(false));
+		// TODO: for pushes, the featuredProducts in homepage is filtered, so there are 2 approaches
+		// 1. filter it on server side, and only send pushes that match the filter.
+		//    most efficient for client, but can be taxing on the server if there are a lot of filters to track
+		// 2. filter it on server side for predefined filters (featured, recent, category pages, etc.). ignore the rest.
+		// 3. filter it on the client side. this will "reduce" the load on server because server
+		//    doesn't need to save the states of filters. but it will waste bandwith if there
+		//    are a lot (hundreds of thousands) of records and they change a lot
+		add(new Label("featuredProductsData", "var featuredProductsData = " + JsonUtils.asJson(products) + ";")
 			.setEscapeModelStrings(false));
 
 		// Add the Backbone View classes

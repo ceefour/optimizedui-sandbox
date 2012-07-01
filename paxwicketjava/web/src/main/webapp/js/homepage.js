@@ -1,4 +1,4 @@
-//Stomp via SockJS
+// Stomp via SockJS
 jQuery(document).ready(function() {
 
 	WebSocketStompMock = SockJS;
@@ -10,9 +10,9 @@ jQuery(document).ready(function() {
 	//  client.send('/topic/test', {}, data);
 	//});
 	client.connect('guest', 'guest', function(x) {
-		id = client.subscribe("/topic/product_category", function(d) {
+		client.subscribe("/topic/product_category", function(d) {
 			var message = JSON.parse(d.body);
-			console.debug('push', message);
+			console.debug('product_category push', message);
 			if (message['@class'] == 'org.soluvas.push.CollectionAdd') {
 				productCategories.add(message.entry);
 			}
@@ -23,6 +23,21 @@ jQuery(document).ready(function() {
 				productCategories.remove(message.entryId);
 			}
 		});
+		
+		client.subscribe("/topic/product", function(d) {
+			var message = JSON.parse(d.body);
+			console.debug('product push', message);
+			if (message['@class'] == 'org.soluvas.push.CollectionAdd') {
+				featuredProducts.add(message.entry);
+			}
+			if (message['@class'] == 'org.soluvas.push.CollectionUpdate') {
+				featuredProducts.get(message.entryId).set(message.entry);
+			}
+			if (message['@class'] == 'org.soluvas.push.CollectionDelete') {
+				featuredProducts.remove(message.entryId);
+			}
+		});
+		
 	});
 
 });

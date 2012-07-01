@@ -28,7 +28,12 @@
 	</service>
 	
 	<bean id="productRepo" class="com.hendyirawan.oui.paxwicketjava.core.InMemoryProductRepository"/>
-	<service ref="productRepo" auto-export="interfaces">
+	<bean id="broadcastingProductRepo" class="org.soluvas.push.data.BroadcastingRepository">
+		<argument ref="productRepo"/>
+		<argument ref="amqp"/>
+		<argument value="product"/>
+	</bean>
+	<service ref="broadcastingProductRepo" auto-export="interfaces">
 		<service-properties>
 			<entry key="entryClass" value="com.hendyirawan.oui.paxwicketjava.core.Product"/>
 		</service-properties>

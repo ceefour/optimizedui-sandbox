@@ -143,14 +143,21 @@
 	<script type="text/javascript" src="/static/bootstrap/js/bootstrap-typeahead.js"></script>
 
 	<script type="text/javascript" src="/static/js/growl.js"></script>
-	<script type="text/javascript" src="/static/js/sidebar.js"></script>
+	<script type="text/javascript" src="/static/js/homepage.js"></script>
 
+<!-- TODO: more efficient way to output JavaScript data -->
 <script type="text/javascript" wicket:id="categoriesData"></script>
+<script type="text/javascript" wicket:id="featuredProductsData"></script>
+
 <script type="text/javascript">
 // Define Model classes
 var ProductCategory = Backbone.Model.extend({});
 var ProductCategoryList = Backbone.Collection.extend({
 	model: ProductCategory});
+
+var Product = Backbone.Model.extend({});
+var ProductList = Backbone.Collection.extend({
+	model: Product});
 
 // TODO: should be convertable directly from Wicket Markup, or defined manually
 // per component
@@ -192,14 +199,33 @@ var CategoriesNavbarView = Backbone.View.extend({
 	}
 });
 
+var productListTemplate = '<% products.each(function(product) { %> \
+	<li><a href="/<%- product.id %>"><%- product.get("name") %></a></li> \
+	<% }) %>';
+var ProductListView = Backbone.View.extend({
+	initialize: function() {
+		_.bindAll(this, 'render');
+		this.model.on('reset', this.render);
+		this.model.on('add', this.render);
+		this.model.on('remove', this.render);
+		this.model.on('change', this.render);
+	},
+	render: function() {
+		var html = _.template(productListTemplate, {products: this.model});
+		this.$el.html(html);
+		return this;
+	}
+});
+
 // create Model instances and reset before view is attached
 var productCategories = new ProductCategoryList(categoriesData);
+var featuredProducts = new ProductList(featuredProductsData);
 
 // create View instances
 var categoriesSidebarView = new CategoriesSidebarView({el: jQuery('.sidebar-nav ul.nav'),
 	model: productCategories});
-var categoriesNavbarView = new CategoriesNavbarView({el: jQuery('.navbar ul.nav'),
-	model: productCategories})
+var featuredProductsView = new ProductListView({el: jQuery('ol.featured-products'),
+	model: featuredProducts});
 
 </script>
 
