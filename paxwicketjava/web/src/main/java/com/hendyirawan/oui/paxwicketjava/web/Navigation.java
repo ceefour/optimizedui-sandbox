@@ -31,7 +31,10 @@ public class Navigation implements Serializable {
 //		this.actorSystem = actorSystem;
 	public Navigation() {
 //		this.executor = executor;
-		this.executor = Executors.newCachedThreadPool();
+//		this.executor = Executors.newCachedThreadPool();
+	}
+	
+	public void init() {
 		categories = ImmutableList.of(
 				new Category("Bags"),
 				new Category("Shawl"),
@@ -62,5 +65,21 @@ public class Navigation implements Serializable {
 			}
 		});
 //		return Futures.successful(categories, actorSystem.dispatcher());
+	}
+
+	public ActorSystem getActorSystem() {
+		return actorSystem;
+	}
+
+	public void setActorSystem(ActorSystem actorSystem) {
+		this.actorSystem = actorSystem;
+	}
+
+	public ExecutorService getExecutor() {
+		return executor;
+	}
+
+	public void setExecutor(ExecutorService executor) {
+		this.executor = executor;
 	}
 }
