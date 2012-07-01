@@ -23,7 +23,8 @@
 <!-- 		<argument value="ouipaxwicket"/> -->
 <!-- 	</bean> -->
 
-	<bean id="productCategoryRepo" class="com.hendyirawan.oui.paxwicketjava.core.InMemoryProductCategoryRepository"/>
+<!-- 	<bean id="productCategoryRepo" class="com.hendyirawan.oui.paxwicketjava.core.InMemoryProductCategoryRepository"/> -->
+	<reference id="productCategoryRepo" interface="com.hendyirawan.oui.paxwicketjava.core.CategoryRepository"/>
 
 	<bean id="navigation" class="com.hendyirawan.oui.paxwicketjava.web.Navigation" init-method="init">
 		<property name="executor" ref="blockingExecutor"/>

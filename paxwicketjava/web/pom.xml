@@ -28,6 +28,11 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.hendyirawan.oui</groupId>
+			<artifactId>com.hendyirawan.oui.paxwicketjava.core</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
 
 		<!-- Pax Wicket Core -->
 		<dependency>
