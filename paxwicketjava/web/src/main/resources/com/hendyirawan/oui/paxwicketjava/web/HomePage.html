@@ -42,8 +42,6 @@
 	<link rel="stylesheet" href="/static/jquery-ui/css/ui-lightness/jquery-ui-1.8.20.custom.css"/>
 	<link rel="stylesheet" href="/static/jquery-notify/ui.notify.css"/>
 
-	<script type="text/javascript" src="/static/jquery-ui/development-bundle/jquery-1.7.2.js"></script>
-
 	<!-- Pass server-side variables to client-side script -->
 	<script type="text/javascript">
 	var baseUri = '/oui/';
@@ -118,8 +116,7 @@
     ================================================== -->
 
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script type="text/javascript" src="/static/js/growl.js"></script>
-	
+	<script type="text/javascript" src="/static/jquery-ui/development-bundle/jquery-1.7.2.js"></script>
 	<script type="text/javascript" src="/static/js/underscore.js"></script>
 	<script type="text/javascript" src="/static/js/backbone.js"></script>
 	<script type="text/javascript" src="/static/js/sockjs-0.3.min.js"></script>
@@ -141,7 +138,40 @@
 	<script type="text/javascript" src="/static/bootstrap/js/bootstrap-carousel.js"></script>
 	<script type="text/javascript" src="/static/bootstrap/js/bootstrap-typeahead.js"></script>
 
+	<script type="text/javascript" src="/static/js/growl.js"></script>
 	<script type="text/javascript" src="/static/js/sidebar.js"></script>
+
+<script type="text/javascript">
+var categoriesData = [{name: 'Bags'}, {name: 'Shawl'}, {name: 'Obi'}, {name: 'Shoes'}];
+
+var ProductCategory = Backbone.Model.extend({});
+var ProductCategoryList = Backbone.Collection.extend({
+	model: ProductCategory});
+var productCategories = new ProductCategoryList();
+// reset before view is attached
+productCategories.reset(categoriesData);
+
+// TODO: should be convertable directly from Wicket Markup, or defined manually
+// per component
+var categoriesSidebarTemplate = '<li class="nav-header">Categories</li> \
+	<% categories.each(function(category) { %> \
+		<li><a href="#<%- category.get("name") %>"><%- category.get("name") %></a></li> \
+	<% }) %> \
+</div>';
+var CategoriesSidebarView = Backbone.View.extend({
+	initialize: function() {
+		//_.bind(this, 'render');
+	},
+	render: function() {
+		var html = _.template(categoriesSidebarTemplate, {categories: this.model});
+		this.$el.html(html);
+		return this;
+	}
+});
+var categoriesSidebarView = new CategoriesSidebarView({el: jQuery('ul.nav.nav-list'),
+	model: productCategories});
+
+</script>
 
 </body>
 </html>

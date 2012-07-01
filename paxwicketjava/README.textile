@@ -89,7 +89,45 @@ Access from http://localhost:8181/system/console/bundles with user karaf passwor
    and store it somewhere for reuse.
 
 
-h2. Deploying Bundles for Development
+h2. Deploying Bundles for Rapid Development
+
+Do @mvn install@ for each project.
+
+Then do a symlink:
+
+bc. cd karaf/deploy
+ln -sv ../../shell/target/com.hendyirawan.oui.paxwicketjava.shell-1.0.0-SNAPSHOT.jar
+ln -sv ../../core/target/com.hendyirawan.oui.paxwicketjava.core-1.0.0-SNAPSHOT.jar
+
+For make, the following symlink structure:
+
+bc. 
+ceefour@annafi:~/git/optimizedui-sandbox/paxwicketjava/karaf/deploy/com.hendyirawan.oui.paxwicketjava.web$ tree
+.
+├── bootstrap -> /home/ceefour/git/optimizedui-sandbox/paxwicketjava/web/src/main/webapp/bootstrap
+├── jquery-notify -> /home/ceefour/git/optimizedui-sandbox/paxwicketjava/web/src/main/webapp/jquery-notify
+├── jquery-ui -> /home/ceefour/git/optimizedui-sandbox/paxwicketjava/web/src/main/webapp/jquery-ui
+├── js -> /home/ceefour/git/optimizedui-sandbox/paxwicketjava/web/src/main/webapp/js
+├── META-INF -> /home/ceefour/git/optimizedui-sandbox/paxwicketjava/web/target/classes/META-INF
+├── OSGI-INF -> /home/ceefour/git/optimizedui-sandbox/paxwicketjava/web/src/main/webapp/OSGI-INF
+└── WEB-INF
+    ├── classes -> /home/ceefour/git/optimizedui-sandbox/paxwicketjava/web/target/classes
+    └── web.xml
+
+8 directories, 1 file
+
+Now access it from http://localhost:8181/oui/
+
+Static assets should also be accessible:
+
+bc. web:list
+
+Should show Deployed on /static . Try:
+
+http://localhost:8181/static/js/backbone.js
+
+
+h2. Deploying Bundles for Pseudo-Development
 
 Do @mvn install@ for each project.
 
@@ -106,9 +144,9 @@ Static assets should also be accessible:
 
 bc. web:list
 
-Should show Deployed on /hello . Try:
+Should show Deployed on /static . Try:
 
-http://localhost:8181/hello/dummy
+http://localhost:8181/static/js/backbone.js
 
 
 h2. Java vs Scala?
