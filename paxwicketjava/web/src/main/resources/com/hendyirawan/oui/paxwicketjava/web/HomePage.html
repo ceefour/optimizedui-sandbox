@@ -143,12 +143,10 @@
 
 <script type="text/javascript" wicket:id="categoriesData"></script>
 <script type="text/javascript">
+// Define Model classes
 var ProductCategory = Backbone.Model.extend({});
 var ProductCategoryList = Backbone.Collection.extend({
 	model: ProductCategory});
-var productCategories = new ProductCategoryList();
-// reset before view is attached
-productCategories.reset(categoriesData);
 
 // TODO: should be convertable directly from Wicket Markup, or defined manually
 // per component
@@ -171,8 +169,33 @@ var CategoriesSidebarView = Backbone.View.extend({
 		return this;
 	}
 });
-var categoriesSidebarView = new CategoriesSidebarView({el: jQuery('ul.nav.nav-list'),
+
+var categoriesNavbarTemplate = '<% categories.each(function(category) { %> \
+	<li><a href="/category/<%- category.id %>"><%- category.get("name") %></a></li> \
+	<% }) %>';
+var CategoriesNavbarView = Backbone.View.extend({
+	initialize: function() {
+		_.bindAll(this, 'render');
+		this.model.on('reset', this.render);
+		this.model.on('add', this.render);
+		this.model.on('remove', this.render);
+		this.model.on('change', this.render);
+	},
+	render: function() {
+		var html = _.template(categoriesNavbarTemplate, {categories: this.model});
+		this.$el.html(html);
+		return this;
+	}
+});
+
+// create Model instances and reset before view is attached
+var productCategories = new ProductCategoryList(categoriesData);
+
+// create View instances
+var categoriesSidebarView = new CategoriesSidebarView({el: jQuery('.sidebar-nav ul.nav'),
 	model: productCategories});
+var categoriesNavbarView = new CategoriesNavbarView({el: jQuery('.navbar ul.nav'),
+	model: productCategories})
 
 </script>
 

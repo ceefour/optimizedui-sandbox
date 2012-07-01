@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soluvas.json.JsonUtils;
 
+import scala.Either;
+
 import com.hendyirawan.oui.paxwicketjava.core.Category;
 
 /**

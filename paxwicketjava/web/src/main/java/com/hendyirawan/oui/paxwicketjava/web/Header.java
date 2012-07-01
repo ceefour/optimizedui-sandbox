@@ -27,10 +27,11 @@ public class Header extends Panel {
 		add(new ListView<Category>("navbar", categories) {
 			@Override
 			protected void populateItem(ListItem<Category> item) {
+				item.setRenderBodyOnly(true);
 				Category category = item.getModelObject();
 				item.add(new ExternalLink("item", "#" + category.getName(), category.getName()));
 			}
-		});
+		}.setRenderBodyOnly(false));
 //		RepeatingView rv = new RepeatingView("rv");
 //		add(rv);
 //		for (Category cat : navigation.getCategories()) {
