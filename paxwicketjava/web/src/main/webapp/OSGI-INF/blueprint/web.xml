@@ -22,7 +22,7 @@
 <!-- 	<bean id="actorSystem" class="akka.actor.ActorSystem" factory-method="create"> -->
 <!-- 		<argument value="ouipaxwicket"/> -->
 <!-- 	</bean> -->
-	<bean id="navigation" class="com.hendyirawan.oui.paxwicketjava.web.Navigation">
+	<bean id="navigation" class="com.hendyirawan.oui.paxwicketjava.web.Navigation" init-method="init">
 		<property name="executor" ref="blockingExecutor"/>
 <!-- 		<argument ref="executor"/> // Cannot use constructor injection, dunno why, probably Wicket's CGLIB? -->
 	</bean>
