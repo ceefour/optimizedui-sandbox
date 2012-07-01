@@ -14,6 +14,7 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soluvas.json.JsonUtils;
+import org.soluvas.push.data.SyncRepository;
 
 import com.hendyirawan.oui.paxwicketjava.core.Category;
 import com.hendyirawan.oui.paxwicketjava.core.Product;
@@ -28,6 +29,8 @@ public class ProductPage extends WebPage {
 	private transient Logger log = LoggerFactory.getLogger(ProductPage.class);
 	@PaxWicketBean(name="navigation")
 	private Navigation navigation;
+	@PaxWicketBean(name="productRepo")
+	private SyncRepository<String, Product> productRepo;
 	
 	public ProductPage(PageParameters params) {
 		
@@ -44,10 +47,10 @@ public class ProductPage extends WebPage {
 		} catch (Exception e) {
 			log.error("Cannot get categories", e);
 		}
-		Product product = new Product("Tia Bag");
+		Product product = productRepo.findOne(params.get("slug").toString());
 		
 		// Construct the view
-		add(new Label("pageTitle", "Buy Amazing Fashion").setRenderBodyOnly(true));
+		add(new Label("pageTitle", product.getName()).setRenderBodyOnly(true));
 		add(new Header(categories));
 		add(new ListView<Category>("categories", navigation.getCategories()) {
 			@Override

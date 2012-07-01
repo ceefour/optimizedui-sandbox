@@ -17,6 +17,7 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soluvas.json.JsonUtils;
+import org.soluvas.push.data.SyncRepository;
 
 import com.google.common.collect.ImmutableList;
 import com.hendyirawan.oui.paxwicketjava.core.Category;
@@ -30,8 +31,11 @@ import com.hendyirawan.oui.paxwicketjava.core.Product;
 public class HomePage extends WebPage {
 
 	private transient Logger log = LoggerFactory.getLogger(HomePage.class);
+	
 	@PaxWicketBean(name="navigation")
 	private Navigation navigation;
+	@PaxWicketBean(name="productRepo")
+	private SyncRepository<String, Product> productRepo;
 	
 	public HomePage() {
 		// Request data
@@ -60,7 +64,7 @@ public class HomePage extends WebPage {
 			}
 		});
 		add(new Footer());
-		add(new ListView<Product>("featuredProducts", ImmutableList.of(new Product("Zevalova Bag"))) {
+		add(new ListView<Product>("featuredProducts", productRepo.findAll()) {
 
 			@Override
 			protected void populateItem(ListItem<Product> item) {
@@ -68,7 +72,8 @@ public class HomePage extends WebPage {
 				Product product = item.getModelObject();
 				PageParameters pars = new PageParameters();
 				pars.add("slug", product.getSlug());
-				item.add(new BookmarkablePageLink<ProductPage>("link", ProductPage.class, pars).setBody(new Model<Serializable>(product.getName())));
+				item.add(new BookmarkablePageLink<ProductPage>("link", ProductPage.class, pars)
+						.setBody(new Model<Serializable>(product.getName())));
 			}
 			
 		});

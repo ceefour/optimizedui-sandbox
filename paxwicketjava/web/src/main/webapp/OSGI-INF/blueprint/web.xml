@@ -26,6 +26,8 @@
 <!-- 	<bean id="productCategoryRepo" class="com.hendyirawan.oui.paxwicketjava.core.InMemoryProductCategoryRepository"/> -->
 	<reference id="productCategoryRepo" interface="org.soluvas.push.data.SyncRepository"
 		filter="(entryClass=com.hendyirawan.oui.paxwicketjava.core.Category)"/>
+	<reference id="productRepo" interface="org.soluvas.push.data.SyncRepository"
+		filter="(entryClass=com.hendyirawan.oui.paxwicketjava.core.Product)"/>
 
 	<bean id="navigation" class="com.hendyirawan.oui.paxwicketjava.web.Navigation" init-method="init">
 		<property name="executor" ref="blockingExecutor"/>
