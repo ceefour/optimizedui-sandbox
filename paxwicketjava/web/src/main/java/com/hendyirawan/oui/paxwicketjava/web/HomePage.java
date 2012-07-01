@@ -45,6 +45,7 @@ public class HomePage extends WebPage {
 		add(new ListView<Category>("categories", navigation.getCategories()) {
 			@Override
 			protected void populateItem(ListItem<Category> item) {
+				item.setRenderBodyOnly(true);
 				Category category = item.getModelObject();
 				item.add(new ExternalLink("name", "#" + category.getName(), category.getName()));
 			}

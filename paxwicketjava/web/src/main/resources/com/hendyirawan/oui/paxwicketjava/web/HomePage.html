@@ -160,7 +160,11 @@ var categoriesSidebarTemplate = '<li class="nav-header">Categories</li> \
 </div>';
 var CategoriesSidebarView = Backbone.View.extend({
 	initialize: function() {
-		//_.bind(this, 'render');
+		_.bindAll(this, 'render');
+		this.model.on('reset', this.render);
+		this.model.on('add', this.render);
+		this.model.on('remove', this.render);
+		this.model.on('change', this.render);
 	},
 	render: function() {
 		var html = _.template(categoriesSidebarTemplate, {categories: this.model});
