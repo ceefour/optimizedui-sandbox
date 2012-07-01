@@ -20,7 +20,7 @@ import org.soluvas.json.JsonUtils;
 
 import com.google.common.collect.ImmutableList;
 import com.hendyirawan.oui.paxwicketjava.core.Category;
-import com.hendyirawan.oui.paxwicketjava.core2.Product;
+import com.hendyirawan.oui.paxwicketjava.core.Product;
 
 /**
  * @author ceefour

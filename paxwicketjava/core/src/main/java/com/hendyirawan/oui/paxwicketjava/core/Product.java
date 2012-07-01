@@ -1,13 +1,14 @@
-package com.hendyirawan.oui.paxwicketjava.core2;
+package com.hendyirawan.oui.paxwicketjava.core;
 
 import java.io.Serializable;
+
 
 /**
  * @author ceefour
  *
  */
 @SuppressWarnings("serial")
-public class Product implements Serializable {
+public class Product implements Serializable, Identifiable<String> {
 
 	private String id;
 	private String slug;

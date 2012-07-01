@@ -26,5 +26,12 @@
 			<entry key="entryClass" value="com.hendyirawan.oui.paxwicketjava.core.Category"/>
 		</service-properties>
 	</service>
+	
+	<bean id="productRepo" class="com.hendyirawan.oui.paxwicketjava.core.InMemoryProductRepository"/>
+	<service ref="productRepo" auto-export="interfaces">
+		<service-properties>
+			<entry key="entryClass" value="com.hendyirawan.oui.paxwicketjava.core.Product"/>
+		</service-properties>
+	</service>
 
 </blueprint>

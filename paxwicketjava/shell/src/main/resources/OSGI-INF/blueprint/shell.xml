@@ -7,9 +7,13 @@
         http://karaf.apache.org/xmlns/shell/v1.0.0 http://karaf.apache.org/xmlns/shell/v1.0.0
         http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0 http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0">
 
+	<!-- Repository beans -->
 	<reference id="productCategoryRepo" interface="org.soluvas.push.data.SyncRepository"
 		filter="(entryClass=com.hendyirawan.oui.paxwicketjava.core.Category)"/>
+	<reference id="productRepo" interface="org.soluvas.push.data.SyncRepository"
+		filter="(entryClass=com.hendyirawan.oui.paxwicketjava.core.Product)"/>
 	
+	<!-- Shell commands -->
     <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
         <command name="oui/hello">
             <action class="com.hendyirawan.oui.paxwicketjava.shell.HelloCommand"/>
@@ -36,6 +40,29 @@
             	<property name="categoryRepository" ref="productCategoryRepo"/>
             </action>
         </command>
+        
+        <!-- Product -->
+        <command name="product/ls">
+            <action class="com.hendyirawan.oui.paxwicketjava.shell.ProductLsCommand">
+            	<property name="productRepository" ref="productRepo"/>
+            </action>
+        </command>
+        <command name="product/add">
+            <action class="com.hendyirawan.oui.paxwicketjava.shell.ProductAddCommand">
+            	<property name="productRepository" ref="productRepo"/>
+            </action>
+        </command>
+        <command name="product/rm">
+            <action class="com.hendyirawan.oui.paxwicketjava.shell.ProductRmCommand">
+            	<property name="productRepository" ref="productRepo"/>
+            </action>
+        </command>
+        <command name="product/rename">
+            <action class="com.hendyirawan.oui.paxwicketjava.shell.ProductRenameCommand">
+            	<property name="productRepository" ref="productRepo"/>
+            </action>
+        </command>
+        
     </command-bundle>
 
 </blueprint>
