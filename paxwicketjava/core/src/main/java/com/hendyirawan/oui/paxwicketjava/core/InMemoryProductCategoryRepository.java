@@ -26,7 +26,7 @@ public class InMemoryProductCategoryRepository implements CategoryRepository {
 	
 	@Override
 	public Category findOne(String id) {
-		return null;
+		return categories.get(id);
 	}
 
 	@Override

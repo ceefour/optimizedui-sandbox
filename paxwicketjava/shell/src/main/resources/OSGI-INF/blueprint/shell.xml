@@ -25,6 +25,16 @@
             	<property name="categoryRepository" ref="productCategoryRepo"/>
             </action>
         </command>
+        <command name="prodcat/rm">
+            <action class="com.hendyirawan.oui.paxwicketjava.shell.ProductCategoryRmCommand">
+            	<property name="categoryRepository" ref="productCategoryRepo"/>
+            </action>
+        </command>
+        <command name="prodcat/rename">
+            <action class="com.hendyirawan.oui.paxwicketjava.shell.ProductCategoryRenameCommand">
+            	<property name="categoryRepository" ref="productCategoryRepo"/>
+            </action>
+        </command>
     </command-bundle>
 
 </blueprint>
