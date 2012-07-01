@@ -3,9 +3,9 @@ package com.hendyirawan.oui.paxwicketjava.shell;
 import org.apache.felix.gogo.commands.Argument;
 import org.apache.felix.gogo.commands.Command;
 import org.apache.karaf.shell.console.OsgiCommandSupport;
+import org.soluvas.push.data.SyncRepository;
 
 import com.hendyirawan.oui.paxwicketjava.core.Category;
-import com.hendyirawan.oui.paxwicketjava.core.CategoryRepository;
 
 /**
  * @author ceefour
@@ -14,7 +14,7 @@ import com.hendyirawan.oui.paxwicketjava.core.CategoryRepository;
 @Command(scope="prodcat", name="rename", description="Rename product category.")
 public class ProductCategoryRenameCommand extends OsgiCommandSupport {
 
-	private CategoryRepository categoryRepository;
+	private SyncRepository<String, Category> categoryRepository;
 	
 	@Argument(index=0, name="ID", required=true)
 	private String id;
@@ -30,11 +30,11 @@ public class ProductCategoryRenameCommand extends OsgiCommandSupport {
 		return category.toString();
 	}
 
-	public CategoryRepository getCategoryRepository() {
+	public SyncRepository<String, Category> getCategoryRepository() {
 		return categoryRepository;
 	}
 
-	public void setCategoryRepository(CategoryRepository categoryRepository) {
+	public void setCategoryRepository(SyncRepository<String, Category> categoryRepository) {
 		this.categoryRepository = categoryRepository;
 	}
 

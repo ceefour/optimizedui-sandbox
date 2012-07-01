@@ -8,7 +8,23 @@
         http://karaf.apache.org/xmlns/shell/v1.0.0 http://karaf.apache.org/xmlns/shell/v1.0.0
         http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0 http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0">
 
+	<bean id="amqpFactory" class="com.rabbitmq.client.ConnectionFactory">
+		<property name="uri" value="amqp://guest:guest@localhost/%2F"/>
+	</bean>
+	<bean id="amqp" factory-ref="amqpFactory" factory-method="newConnection" destroy-method="close"/>
+
 	<bean id="productCategoryRepo" class="com.hendyirawan.oui.paxwicketjava.core.InMemoryProductCategoryRepository"/>
-	<service ref="productCategoryRepo" auto-export="interfaces"/>
+<!-- 	<service ref="productCategoryRepo" auto-export="interfaces"/> -->
+	
+	<bean id="broadcastingProductCategoryRepo" class="org.soluvas.push.data.BroadcastingRepository">
+		<argument ref="productCategoryRepo"/>
+		<argument ref="amqp"/>
+		<argument value="product_category"/>
+	</bean>
+	<service ref="broadcastingProductCategoryRepo" auto-export="interfaces">
+		<service-properties>
+			<entry key="entryClass" value="com.hendyirawan.oui.paxwicketjava.core.Category"/>
+		</service-properties>
+	</service>
 
 </blueprint>

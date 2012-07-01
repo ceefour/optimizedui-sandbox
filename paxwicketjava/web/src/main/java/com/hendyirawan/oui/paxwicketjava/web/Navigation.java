@@ -13,7 +13,6 @@ import org.soluvas.push.data.SyncRepository;
 import akka.actor.ActorSystem;
 
 import com.hendyirawan.oui.paxwicketjava.core.Category;
-import com.hendyirawan.oui.paxwicketjava.core.CategoryRepository;
 
 /**
  * @author ceefour
@@ -25,7 +24,7 @@ public class Navigation implements Serializable {
 	private transient Logger log = LoggerFactory.getLogger(Navigation.class);
 	private ActorSystem actorSystem;
 	private ExecutorService executor;
-	private CategoryRepository categoryRepository;
+	private SyncRepository<String, Category> categoryRepository;
 	
 //	public Navigation(ActorSystem actorSystem) {
 //		super();
@@ -79,11 +78,12 @@ public class Navigation implements Serializable {
 		this.executor = executor;
 	}
 
-	public CategoryRepository getCategoryRepository() {
+	public SyncRepository<String, Category> getCategoryRepository() {
 		return categoryRepository;
 	}
 
-	public void setCategoryRepository(CategoryRepository categoryRepository) {
+	public void setCategoryRepository(SyncRepository<String, Category> categoryRepository) {
 		this.categoryRepository = categoryRepository;
 	}
+
 }

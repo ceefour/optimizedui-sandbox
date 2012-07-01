@@ -7,7 +7,8 @@
         http://karaf.apache.org/xmlns/shell/v1.0.0 http://karaf.apache.org/xmlns/shell/v1.0.0
         http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0 http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0">
 
-	<reference id="productCategoryRepo" interface="com.hendyirawan.oui.paxwicketjava.core.CategoryRepository"/>
+	<reference id="productCategoryRepo" interface="org.soluvas.push.data.SyncRepository"
+		filter="(entryClass=com.hendyirawan.oui.paxwicketjava.core.Category)"/>
 	
     <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
         <command name="oui/hello">

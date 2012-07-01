@@ -3,8 +3,9 @@ package com.hendyirawan.oui.paxwicketjava.shell;
 import org.apache.felix.gogo.commands.Argument;
 import org.apache.felix.gogo.commands.Command;
 import org.apache.karaf.shell.console.OsgiCommandSupport;
+import org.soluvas.push.data.SyncRepository;
 
-import com.hendyirawan.oui.paxwicketjava.core.CategoryRepository;
+import com.hendyirawan.oui.paxwicketjava.core.Category;
 
 /**
  * @author ceefour
@@ -13,7 +14,7 @@ import com.hendyirawan.oui.paxwicketjava.core.CategoryRepository;
 @Command(scope="prodcat", name="rm", description="Delete product category/categories.")
 public class ProductCategoryRmCommand extends OsgiCommandSupport {
 
-	private CategoryRepository categoryRepository;
+	private SyncRepository<String, Category> categoryRepository;
 	
 	@Argument(index=0, name="ID", required=true, multiValued=true)
 	private String[] ids;
@@ -28,11 +29,11 @@ public class ProductCategoryRmCommand extends OsgiCommandSupport {
 		return null;
 	}
 
-	public CategoryRepository getCategoryRepository() {
+	public SyncRepository<String, Category> getCategoryRepository() {
 		return categoryRepository;
 	}
 
-	public void setCategoryRepository(CategoryRepository categoryRepository) {
+	public void setCategoryRepository(SyncRepository<String, Category> categoryRepository) {
 		this.categoryRepository = categoryRepository;
 	}
 
