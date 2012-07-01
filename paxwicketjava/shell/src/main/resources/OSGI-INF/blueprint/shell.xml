@@ -7,9 +7,23 @@
         http://karaf.apache.org/xmlns/shell/v1.0.0 http://karaf.apache.org/xmlns/shell/v1.0.0
         http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0 http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0">
 
+	<reference id="productCategoryRepo" interface="com.hendyirawan.oui.paxwicketjava.core.CategoryRepository"/>
+	
     <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
         <command name="oui/hello">
             <action class="com.hendyirawan.oui.paxwicketjava.shell.HelloCommand"/>
+        </command>
+        
+        <!-- Product Category -->
+        <command name="prodcat/ls">
+            <action class="com.hendyirawan.oui.paxwicketjava.shell.ProductCategoryLsCommand">
+            	<property name="categoryRepository" ref="productCategoryRepo"/>
+            </action>
+        </command>
+        <command name="prodcat/add">
+            <action class="com.hendyirawan.oui.paxwicketjava.shell.ProductCategoryAddCommand">
+            	<property name="categoryRepository" ref="productCategoryRepo"/>
+            </action>
         </command>
     </command-bundle>
 

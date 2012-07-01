@@ -23,7 +23,6 @@ import com.hendyirawan.oui.paxwicketjava.core.CategoryRepository;
 public class Navigation implements Serializable {
 
 	private transient Logger log = LoggerFactory.getLogger(Navigation.class);
-	private List<Category> categories;
 	private ActorSystem actorSystem;
 	private ExecutorService executor;
 	private CategoryRepository categoryRepository;
@@ -38,11 +37,10 @@ public class Navigation implements Serializable {
 	}
 	
 	public void init() {
-		categories = categoryRepository.findAll();
 	}
 
 	public List<Category> getCategories() {
-		return categories;
+		return categoryRepository.findAll();
 	}
 
 	/**
@@ -59,7 +57,7 @@ public class Navigation implements Serializable {
 			@Override
 			public List<Category> call() throws Exception {
 				log.info("Returning categories data from fake database");
-				return categories;
+				return categoryRepository.findAll();
 			}
 		});
 //		return Futures.successful(categories, actorSystem.dispatcher());
