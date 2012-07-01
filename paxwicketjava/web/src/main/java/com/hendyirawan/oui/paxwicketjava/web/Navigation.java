@@ -25,13 +25,13 @@ public class Navigation implements Serializable {
 	private List<Category> categories;
 	private ActorSystem actorSystem;
 	private ExecutorService executor;
-	private ProductCategoryRepository categoryRepo;
+	private InMemoryProductCategoryRepository categoryRepo;
 	
 //	public Navigation(ActorSystem actorSystem) {
 //		super();
 //		this.actorSystem = actorSystem;
 	public Navigation() {
-		categoryRepo = new ProductCategoryRepository();
+		categoryRepo = new InMemoryProductCategoryRepository();
 //		this.executor = executor;
 //		this.executor = Executors.newCachedThreadPool();
 	}

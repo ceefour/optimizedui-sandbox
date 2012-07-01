@@ -12,11 +12,11 @@ import com.google.common.collect.ImmutableList;
  * @author ceefour
  *
  */
-public class ProductCategoryRepository implements SyncRepository<String, Category> {
+public class InMemoryProductCategoryRepository implements SyncRepository<String, Category> {
 
 	private Map<String, Category> categories = new ConcurrentHashMap<String, Category>();
 	
-	public ProductCategoryRepository() {
+	public InMemoryProductCategoryRepository() {
 		categories.put("bags", new Category("bags", "Bags"));
 		categories.put("shawl", new Category("shawl", "Shawl"));
 		categories.put("obi", new Category("obi", "Obi"));
